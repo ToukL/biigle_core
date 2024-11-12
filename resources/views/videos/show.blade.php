@@ -76,4 +76,5 @@
     biigle.$declare('videos.spritesMaxThumbnails', {!! $spritesMaxThumbnails !!});
     biigle.$declare('videos.spritesMinThumbnails', {!! $spritesMinThumbnails !!});
 </script>
+@mixin('videosScripts')
 @endpush

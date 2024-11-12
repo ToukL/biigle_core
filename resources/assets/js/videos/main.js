@@ -1,3 +1,4 @@
+import './export';
 import './filters/videoTime';
 import Navbar from './navbar';
 import SearchResults from './searchResults';

@@ -2,6 +2,15 @@
 import PowerToggle from '../../core/components/powerToggle';
 import Settings from '../stores/settings';
 
+/**
+ * Additional components that can be dynamically added by other Biigle modules via
+ * view mixins. These components are meant for the "videosSettingsTab" view mixin
+ * mount point.
+ *
+ * @type {Object}
+ */
+export let plugins = {};
+
 export default {
     components: {
         powerToggle: PowerToggle,
@@ -42,6 +51,12 @@ export default {
     computed: {
         jumpByFrameNotSupported() {
             return !this.supportsJumpByFrame;
+        },
+        plugins() {
+            return plugins;
+        },
+        settings() {
+            return Settings;
         },
     },
     methods: {

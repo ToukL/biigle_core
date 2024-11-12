@@ -677,6 +677,9 @@ export default {
         selectLastAnnotation() {
             let lastAnnotation = this.annotations.reduce((lastAnnotated, a) => a.id > lastAnnotated.id ? a : lastAnnotated, { id: 0 });
             this.selectAnnotations([lastAnnotation], this.selectedAnnotations, lastAnnotation.startFrame);
+        },
+        emitVideoChanged() {
+            Events.$emit('videos.change', this.videoId, this.video);
         }
     },
     watch: {
@@ -728,6 +731,7 @@ export default {
         this.video.addEventListener('seeked', this.handleVideoSeeked);
         this.video.addEventListener('pause', this.updateVideoUrlParams);
         this.video.addEventListener('seeked', this.updateVideoUrlParams);
+        this.video.addEventListener('loadeddata', this.emitVideoChanged);
 
         Keyboard.on('C', this.selectLastAnnotation, 0, this.listenerSet);
 
@@ -752,6 +756,7 @@ export default {
         if(navigator.userAgent.toLowerCase().indexOf('firefox') > -1){
             Messages.danger('Current versions of the Firefox browser may not show the correct video frame for a given time. Annotations may be placed incorrectly. Please consider using Chrome until the issue is fixed in Firefox. Learn more on https://github.com/biigle/core/issues/391.');
         }
+        Events.$emit('videos.map.init', this.$refs.videoScreen.map);
     },
 };
 </script>

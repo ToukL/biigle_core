@@ -52,6 +52,8 @@
                 <div class="sidebar-tab__section">
                     <power-toggle :active="muteVideo" title-off="Mute video" title-on="Unmute video" v-on:on="handleMuteVideo" v-on:off="handleUnmuteVideo">Mute Video</power-toggle>
                 </div>
+
+                @mixin('videosSettingsTab')
             </div>
     </settings-tab>
 </sidebar-tab>
